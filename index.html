@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Invited to Neha's Party!</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #A6E3E9;
+            --secondary-color: #E3FDFD;
+            --accent-color: #71C9CE;
+            --text-color: #364F6B;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: fall 8s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        h1 {
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: var(--text-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            font-family: 'Pacifico', cursive;
+            color: var(--text-color);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .party-details {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .info-icon {
+            background: var(--accent-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #3F72AF;
+            text-shadow: none;
+        }
+        
+        .performances {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .performance-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.6);
+            transition: transform 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .performance-item:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .emoji {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+        
+        .query-section {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .query-title {
+            font-family: 'Pacifico', cursive;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(113, 201, 206, 0.3);
+            color: var(--text-color);
+        }
+        
+        .form-control::placeholder {
+            color: rgba(54, 79, 107, 0.5);
+        }
+        
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 0 3px rgba(113, 201, 206, 0.2);
+            color: var(--text-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn-party {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #3F72AF 100%);
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 25px;
+            border-radius: 50px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-party:hover {
+            transform: translateY(-3px);
+            box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .welcome-banner {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .dress-code {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .floating-music-notes {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(113, 201, 206, 0.6);
+            animation: float 5s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti elements will be added by JavaScript -->
+    
+    <!-- Floating music notes -->
+    <div class="floating-music-notes" style="top: 20%; left: 10%;">♪</div>
+    <div class="floating-music-notes" style="top: 30%; left: 85%;">♫</div>
+    <div class="floating-music-notes" style="top: 60%; left: 20%;">♬</div>
+    <div class="floating-music-notes" style="top: 80%; left: 75%;">♩</div>
+    <div class="floating-music-notes" style="top: 40%; left: 50%;">🎵</div>
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1>You're Invited!</h1>
+                
+                <div class="party-details">
+                    <h2>The When, Where & Who</h2>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div>
+                            <span class="highlight">When:</span> Saturday, 1st March 2025
+                            <br>
+                            <small>(Yes, we checked the calendar... it's a real date! 🎉)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <span class="highlight">Time:</span> 6:30 PM IST onwards
+                            <br>
+                            <small>(That's "Indian Standard Time" not "I'm Still Trying" to decide when to show up)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div>
+                            <span class="highlight">Place:</span> Neha's Den
+                            <br>
+                            <small>(It's a house, not an actual den with wild animals... probably)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <span class="highlight">Address:</span> House Number 1277, Sector 10 A
+                            <br>
+                            <small>(Follow the sound of laughter or the smell of food, whichever you detect first)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <span class="highlight">Phone:</span> 8587938529
+                            <br>
+                            <small>(Call only if you're lost or bringing extra snacks)</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="party-details">
+                    <h2>What to Expect</h2>
+                    <p>There will be <span class="highlight">FOOD</span> (because hungry people are grumpy people), <span class="highlight">MUSIC</span> (that will make you question your dancing abilities), and <span class="highlight">LOTS OF CHATTER</span> (topics ranging from existential crises to why pineapple on pizza is controversial).</p>
+                    
+                    <p>Oh yes! Did we say you can <span class="highlight">BYOB</span> as well! (That's "Bring Your Own Beverage" not "Bring Your Own Bear" — though that would make for an interesting party)</p>
+                </div>
+                
+                <div class="performances">
+                    <h2>Star Performances</h2>
+                    
+                    <div class="performance-item">
+                        <div class="emoji">🎸</div>
+                        <div>
+                            <strong>Special Performance by:</strong> Aniket (the not-so-great guitarist)
+                            <br>
+                            <small>He knows three chords and will play them in random order for 20 minutes. Ear plugs not provided.</small>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-item">
+                        <div class="emoji">🌟</div>
+                        <div>
+                            <strong>Very Very Special Performance by:</strong> Sushant
+                            <br>
+                            <small>We don't know what he's going to do, he doesn't know what he's going to do, but it will be VERY VERY special.</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dress-code">
+                    <h2>Dress Code</h2>
+                    <p>Whatever is comfortable for you!</p>
+                    <p><small>(Translation: Anything from pajamas to tuxedos — we don't judge, but Instagram might)</small></p>
+                </div>
+                
+                <div class="query-section">
+                    <h2 class="query-title">Important Requests!</h2>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div>
+                            <span class="highlight">Surprise Video for Neha:</span>
+                            <p>Please send a 30s - 1min clip of your interaction with Neha and what you like/dislike about her. We'll edit this into a compilation to play after dinner!</p>
+                            <p><small>(Yes, this is a "surprise" party for Neha that she definitely doesn't know about... just like she doesn't know we're collecting these videos, so shhh! And no, saying "I dislike nothing about Neha" is not allowed — we all know she's not perfect, especially when she's hangry.)</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <span class="highlight">That's it!</span>
+                            <p>No really, that's all we need from you. Just show up and be fabulous!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div>
+                            <span class="highlight">P.S. Song Requests:</span>
+                            <p>If you have any song requests (that I'll try to prepare), please send them to: <a href="mailto:maithani.aniket@gmail.com" style="color: var(--accent-color); font-weight: bold;">maithani.aniket@gmail.com</a></p>
+                            <p><small>(Please be kind with your requests — remember Aniket knows only three chords, and two of them might be the same one.)</small></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="welcome-banner">
+                    YOU ARE WELCOME!
+                    <div><small>(Like, seriously, we actually want you to come)</small></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap & JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Create confetti elements
+        function createConfetti() {
+            const colors = ['#A6E3E9', '#71C9CE', '#3F72AF', '#DBE2EF', '#F9F7F7', '#CBF1F5'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDuration = Math.random() * 5 + 3 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                
+                document.body.appendChild(confetti);
+            }
+        }
+        
+        // Call function when page loads
+        window.onload = createConfetti;
+    </script>
+</body>
+</html>
